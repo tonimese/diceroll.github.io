@@ -1,0 +1,73 @@
+<head>
+<title>Two dice rolling game - JavaScript, random, two dice roll application by tonimese</title>
+</head>
+    <body>
+        <canvas id="myCanvas" width="300" height="150">
+Your browser does not support the HTML5 canvas tag.
+        </canvas> 
+        <p id="dice" style="margin-left:139px; font-size:10px;">Roll two dice with Math.random()</p>
+        <input style="font-size:20px" id="hiding" type="button" onclick="roll()" value="Click this button to roll the dice">
+
+<script>
+function roll() {
+document.getElementById('hiding').disabled = true;
+    d1 = Math.floor(Math.random() * 6) + 1;
+    d2 = Math.floor(Math.random() * 6) + 1;
+
+    if (d1>=d2){
+        dA = d1; dB = d2;
+    }else{
+        dA = d2; dB = d1;
+    }
+    document.getElementById("dice").innerHTML=dA+" - "+dB+'   ...push Spacebar to roll again';
+
+    var ctx=document.getElementById("myCanvas").getContext("2d");
+        ctx.clearRect(0,0,300,150);
+
+        ctx.lineWidth=1;
+    var drawSquare = function(){
+        ctx.beginPath();
+        ctx.moveTo(40,20);
+        ctx.lineTo(110,20);
+        ctx.arcTo(130,20,130,40,20);
+        ctx.lineTo(130,110);
+        ctx.arcTo(130,130,110,130,20);
+        ctx.lineTo(40,130);
+        ctx.arcTo(20,130,20,110,20);
+        ctx.lineTo(20,50);
+        ctx.arcTo(20,20,40,20,20);
+        ctx.stroke();
+        };
+    drawSquare();
+    ctx.translate(150,0);
+    drawSquare();          
+    ctx.translate(-150,0);
+
+    ctx.lineWidth=12;
+    var dot = function(x,y){
+        ctx.beginPath();
+        ctx.arc(x,y,4,0,2*Math.PI);
+        ctx.stroke(); };
+
+    var drawDots = function(dX){       
+        if (dX===2||dX===3||dX===4||dX===5||dX===6){dot(45,45);}
+        if (dX===6){dot(45,75);}
+        if (dX===4||dX===5||dX===6){dot(45,105);}
+        if (dX===1||dX===3||dX===5){dot(75,75);}
+        if (dX===4||dX===5||dX===6){dot(105,45);}
+        if (dX===6){dot(105,75);}
+        if (dX===2||dX===3||dX===4||dX===5||dX===6){dot(105,105);}
+        };
+    
+    drawDots(dA);
+    ctx.translate(150,0);
+    drawDots(dB);
+    ctx.translate(-150,0);
+        setTimeout(function(){
+        document.getElementById('hiding').disabled = false;
+        },3000);
+};
+
+</script>
+<noscript>Sorry, your browser does not support JavaScript!</noscript>
+</body>
