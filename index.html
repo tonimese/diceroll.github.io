@@ -6,7 +6,7 @@
 Your browser does not support the HTML5 canvas tag.
         </canvas> 
         <p id="dice" style="margin-left:139px; font-size:10px;">Roll two dice with Math.random()</p>
-        <input style="font-size:20px" id="hiding" type="button" onclick="roll()" value="Click this button to roll the dice">
+        <input style="font-size:24px" id="hiding" type="button" onclick="roll()" value="Click here to roll the dice">
 
 <script>
 function roll() {
@@ -19,7 +19,7 @@ document.getElementById('hiding').disabled = true;
     }else{
         dA = d2; dB = d1;
     }
-    document.getElementById("dice").innerHTML=dA+" - "+dB+'   ...push Spacebar to roll again';
+    document.getElementById("dice").innerHTML=dA+" - "+dB+'   ...roll again';
 
     var ctx=document.getElementById("myCanvas").getContext("2d");
         ctx.clearRect(0,0,300,150);
